@@ -9,15 +9,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.Backline.Api.Web.dto.NovoCorrentista;
 import com.example.Backline.Api.Web.model.Correntista;
 import com.example.Backline.Api.Web.repository.CorrentistaRepository;
+import com.example.Backline.Api.Web.service.CorrentistaService;
+
 
 @RestController
-@RequestMapping("/correntistasantander")
+@RequestMapping("/correntistas")
 public class CorrentistaController {
 
 	@Autowired
 	private CorrentistaRepository repository;
+	
+	@Autowired
+	private CorrentistaService service;
 	
 	@GetMapping
 	public List<Correntista> findAll(){
@@ -26,8 +32,8 @@ public class CorrentistaController {
 	}
 	
 	@PostMapping
-	public void save (@RequestBody Correntista correntista) {
-		
+	public void save (@RequestBody NovoCorrentista correntista) {
+		service.save(correntista);
 		
 		
 		
